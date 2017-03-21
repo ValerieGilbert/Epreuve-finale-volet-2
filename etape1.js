@@ -21,24 +21,33 @@ MongoClient.connect('mongodb://127.0.0.1:27017/provinces', (err, database) => {
 app.get('/',  (req, res) => {
    console.log('la route route get / = ' + req.url)
  
-    var cursor = db.collection('adresse').find().toArray(function(err, resultat){
+    var cursor = db.collection('provinces').find().toArray(function(err, resultat){
        if (err) return console.log(err)
 
-    res.render('index.ejs', {adresse: resultat})
+    res.render('index.ejs', {provinces: resultat})
 
     }) 
     
 })
 
-app.get('/formulaire',  (req, res) => {
-   console.log('la route  get / = ' + req.url)
-   res.sendFile(__dirname + "/public/html/forme.htm")
+app.get('/fichier',  (req, res) => {
+  fs.readFile('public/text/collection_provinces.json', 'utf8', function (err, data) {
+      if (err) return console.log(err)
+      console.log('Lecture du json')
+      res.send(data)
+
+    })
 })
 
-app.post('/adresse',  (req, res) => {
-  db.collection('adresse').save(req.body, (err, result) => {
+app.post('fichier',  (req, res) => {
+  db.collection('provinces').save(req.body, (err, result) => {
       if (err) return console.log(err)
       console.log('sauvegarder dans la BD')
       res.redirect('/')
     })
 })
+
+fs.readFile('public/text/collection_provinces.json', 'utf8', function (err, data) {
+    if (err) throw err;
+    var obj = JSON.parse(data);
+});
