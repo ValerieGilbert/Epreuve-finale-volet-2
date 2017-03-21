@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))  // pour utiliser le dossier public
 app.use(bodyParser.json())  // pour traiter les données JSON
 var db
+var tr;
 
 MongoClient.connect('mongodb://127.0.0.1:27017/provinces', (err, database) => {
   if (err) return console.log(err)
@@ -43,6 +44,8 @@ app.get('/provinces',  (req, res) => {
   fs.readFile('public/text/collection_provinces.json', 'utf8', function (err, data) {
       if (err) return console.log(err)
       console.log("affiche tableau");
-      res.json(data);
+
+      JSON.parse(data)
+      res.render('index.ejs', {provinces: data})
     })
 })
