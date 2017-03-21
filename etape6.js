@@ -75,3 +75,14 @@ app.get('/detruire', (req, res) => {
 	 res.redirect('/')
 	 })
 })
+
+app.get('/ajouterPlusieurs',  (req, res) => {
+  var nbHaz = Math.floor((Math.random() * 999) + 100);
+   db.collection('provinces').save({code: "QC", nom: "Québec", capital : nbHaz}, (err, result) => {
+      if (err) return console.log(err)
+      console.log('ajout dans la BD')
+
+      res.redirect('/')
+
+    })
+})
