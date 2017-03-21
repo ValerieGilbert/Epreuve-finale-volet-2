@@ -45,7 +45,7 @@ app.get('/provinces',  (req, res) => {
       if (err) return console.log(err)
       console.log("affiche tableau");
 
-      JSON.parse(data)
-      res.render('index.ejs', {provinces: data})
+     
+      res.render('index.ejs', {provinces:  JSON.parse(data)})
     })
 })
