@@ -55,3 +55,13 @@ app.get('/collection',  (req, res) => {
       console.log('la BD')
       res.redirect('/')
 })
+
+app.get('/ajouter',  (req, res) => {
+	 db.collection('provinces').save(req.body, (err, result) => {
+      if (err) return console.log(err)
+      console.log('ajout dans la BD')
+
+      res.redirect('/')
+
+    })
+})

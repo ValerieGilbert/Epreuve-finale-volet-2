@@ -55,3 +55,23 @@ app.get('/collection',  (req, res) => {
       console.log('la BD')
       res.redirect('/')
 })
+
+app.get('/ajouter',  (req, res) => {
+	 db.collection('provinces').save(req.body, (err, result) => {
+      if (err) return console.log(err)
+      console.log('ajout dans la BD')
+
+      res.redirect('/')
+
+    })
+})
+
+app.get('/detruire', (req, res) => {
+	 console.log(id)
+	 db.collection('adresse')
+	 .findOneAndDelete({"nom": ObjectID("Québec")}, (err, resultat) => {
+
+	if (err) return console.log(err)
+	 res.redirect('/')
+	 })
+})
