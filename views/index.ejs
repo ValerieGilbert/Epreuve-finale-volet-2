@@ -13,7 +13,7 @@
   	  	<nav>
 
   	  		<a href="http://localhost:8081/fichier">1-Fichier</a>
-  	  		<a href="http://localhost:8081">2-Provinces</a>
+  	  		<a href="http://localhost:8081/provinces">2-Provinces</a>
   	  		<a href="http://localhost:8081">3-Collection</a>
   	  		<a href="http://localhost:8081">4-Ajouter un document</a>
   	  		<a href="http://localhost:8081">5-Détruire</a>
@@ -21,9 +21,18 @@
   	  	<nav>
   	  </header>
   	  <main>
+
 		  <table class="tableau">
-        <span id="afficher"></span>
-		  </table>
+        <tr class="provinces">
+          <% for(var i=0; i<provinces.length; i++) {%>
+          <td class="client"><%= provinces[i].code %></td>
+          <td class="client"><%= provinces[i].nom %></td> 
+          <td class="client"><%= provinces[i].capital %></td>
+          <td class="client"><%= provinces[i].id %></td>
+        </tr>
+        <% } %>
+      </table>
+
 	  </main>
 	  <footer>
 	  <p>Epreuve finale volet II - Programmation et veille technologique - TIM - Collège de Maisonneuve</p>

@@ -38,3 +38,11 @@ app.get('/fichier',  (req, res) => {
 
     })
 })
+
+app.get('/provinces',  (req, res) => {
+  fs.readFile('public/text/collection_provinces.json', 'utf8', function (err, data) {
+      if (err) return console.log(err)
+      console.log("affiche tableau");
+      res.json(data);
+    })
+})
