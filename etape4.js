@@ -57,7 +57,8 @@ app.get('/collection',  (req, res) => {
 })
 
 app.get('/ajouter',  (req, res) => {
-	 db.collection('provinces').save(req.body, (err, result) => {
+  var nbHaz = Math.floor((Math.random() * 999) + 100);
+   db.collection('provinces').save({code: "QC", nom: "Québec", capital : nbHaz}, (err, result) => {
       if (err) return console.log(err)
       console.log('ajout dans la BD')
 
